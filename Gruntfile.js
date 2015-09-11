@@ -57,11 +57,11 @@ module.exports = function(a) {
                 port: 9e3,
                 open: !0,
                 livereload: 35729,
-                hostname: "localhost"
+                hostname: "*"
             },
             server: {
                 options: {
-                    port: 9001,
+                    //port: 9001,
                     base: "./"
                 }
             }
