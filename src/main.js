@@ -20,7 +20,7 @@
                 bxWidth: 80,
                 bxHeight: 80,
                 //score:0,
-                totalTime:50
+                totalTime:5
                 
             };
 
@@ -130,6 +130,7 @@
 					window.clearInterval(intervalId);
 					_this.clear();
 					playdiv.style.display='block';
+					playButton.innerText = '重新开始！！';
 				},
 				
 				
