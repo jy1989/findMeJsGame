@@ -20,7 +20,7 @@
 		　　　　
 
 		createNew : function (setting) {
-			console.log('create:', setting);
+			//console.log('create:', setting);
 
 			var el = {
 				info : gE('info'),
@@ -34,16 +34,17 @@
 			var intervalId;
 			var timecount = 0;
 			var _this;
-			var appScore=0;
+			var appScore = 0;
 			var app = {
 				initEl : function () {
 					_this = this;
-					appScore=score;
+					appScore = score;
 					el.scrollview.style.width = setting.scWidth + 'px';
 					el.scrollview.style.height = setting.scHeight + 'px';
+					el.scrollview.style.border='10px solid #f0f0f0';
 					// document.body.scrollTop = rd(0, setting.scHeight - setting.bxHeight);
 					// var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-					 //scrollTop= rd(0, setting.scHeight - setting.bxHeight);
+					//scrollTop= rd(0, setting.scHeight - setting.bxHeight);
 					// scrollTop= '500px';
 					//document.body.scrollTop = rd(0, setting.scWidth - setting.bxWidth);
 
@@ -128,12 +129,12 @@
 						setting.totalTime--;
 						appScore++;
 						el.timecount.innerText = '剩余时间' + setting.totalTime + 's';
-						el.lb.innerHTML = '总用时'+appScore+'s';
+						el.lb.innerHTML = '总用时' + appScore + 's';
 						if (setting.totalTime <= 0) {
 							_this.youFindMeFail();
-							
+
 						}
-						
+
 					}, 1000);
 				},
 				youFindMeSuccess : function () {
@@ -143,12 +144,12 @@
 					playdiv.style.display = 'block';
 
 					if (setting.level >= setting.maxLevel) {
-						playButton.innerText = '好咯，你赢了咯!!';//+'用了'+appScore+'秒玩到了第'+setting.level+'关';
+						playButton.innerText = '好咯，你赢了咯!!'; //+'用了'+appScore+'秒玩到了第'+setting.level+'关';
 						playButton.removeEventListener('click', playButtonGameStart, false);
 					} else {
 						levelIndex++;
 						playButton.innerText = '来!下一关！！';
-						score=appScore;
+						score = appScore;
 					}
 				},
 				youFindMeFail : function () {
@@ -184,7 +185,7 @@
 		}
 	};
 	var levelIndex = 0;
-	var score=0;
+	var score = 0;
 	var settingMap = {
 		scWidth : [4000, 6000, 8000],
 		scHeight : [5000, 7000, 9000],
@@ -196,7 +197,7 @@
 		babyBoxColor : ['green', 'red', 'orange'],
 		babyBoxHeight : [50, 60, 70],
 		babyBoxWidth : [50, 60, 70],
-		babyBoxCount : [30, 40, 50]
+		babyBoxCount : [50, 100, 150]
 	};
 	var playButton = gE('playbutton');
 	var playdiv = gE('playdiv');
@@ -230,6 +231,25 @@
 		startgame(levelIndex);
 	}
 
-	playButton.addEventListener('click', playButtonGameStart, false);
+	var ua = navigator.userAgent.toLowerCase();
+	console.log(ua);
+	if (ua.match(/msie ([\d.]+)/)) {
+		playButton.innerHTML = '你还用IE!?';
+	} else {
+		playButton.addEventListener('click', playButtonGameStart, false);
+		
+		if (/android/i.test(ua) || /iphone/i.test(ua)) {
+				console.log('android iphone');
+			var css = "body::-webkit-scrollbar {width: 0 !important;height: 0 !important; }";//html{width:100;height:100%;overflow:scroll;-webkit-overflow-scrolling: touch;}";
+
+			var style = document.createElement('style');
+			style.innerHTML=css;
+
+			document.getElementsByTagName('head')[0].appendChild(style);
+		}else{
+			playButton.innerHTML = '话说，这个小游戏不是给电脑玩的';
+			playButton.style.width='400px';
+		}
+	}
 
 })();

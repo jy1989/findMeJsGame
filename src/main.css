@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>find me</title>
- <link rel="stylesheet" href="animate.min.css">
-<style>
 *{
 margin:0;
 padding:0;
@@ -26,12 +18,12 @@ position:absolute;
 
 #scrollview{
 
-	width:100%;
-	height:100%;
+	width:0;
+	height:0;
 	position:relative;
 	top:0;
 	left:0;
-	border:10px solid #f0f0f0;
+	
 	/*z-index: 2;*/
 	
 /*	
@@ -43,12 +35,13 @@ background-size:75px 100px;
 */	
 
 }
+/*
 body::-webkit-scrollbar {
         width: 0 !important;
         height: 0 !important;
-    }
+    }*/
 html,body{
-	width:100%;
+	width:100;
 	height:100%;
 	overflow:scroll;
 	-webkit-overflow-scrolling: touch;
@@ -134,21 +127,3 @@ border:1px solid #000;
   background:#fff;
   z-index:10000;
 }
-
-</style>
-</head>
-<body>
-
-<div id="info" class="animated infinite pulse">滑动找我</div>
-<div id="timecount" xclass="animated infinite pulse">剩余时间</div>
-<div id="level" xclass="animated infinite pulse">关卡</div>
-<div id="lb"  >坐标</div>
-
-<div id="scrollview">
-	<div id="box" class="animated infinite pulse"></div>
-</div>
-<div id="playdiv"><button id="playbutton" class="animated infinite pulse">开始！</button></div>
-<xscript src="build/findme.min.js"></xscript>
-<script src="src/main.js"></script>
-</body>
-</html>

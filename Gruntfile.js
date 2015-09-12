@@ -8,7 +8,7 @@ module.exports = function(a) {
                     compress: !0
                 },
                 files: {
-                    "build/<%= pkg.name %>.min.js": [ "src/**/*.js" ]
+                    "js/main.min.js": [ "src/**/*.js" ]
                 }
             },
             betigruntjs: {
@@ -42,8 +42,8 @@ module.exports = function(a) {
         },
         watch: {
             scripts: {
-                files: [ "src/**/*.js", "Gruntfile.js" ],
-                tasks: [ "jshint", "uglify:compress" ]
+                files: [ "src/**/*.js", "src/**/*.css", "Gruntfile.js" ],
+                tasks: [ "default" ]
             },
             livereload: {
                 options: {
@@ -65,10 +65,23 @@ module.exports = function(a) {
                     base: "./"
                 }
             }
-        }
+        },
+		 cssmin: {
+         options: {
+             keepSpecialComments: 0
+         },
+         compress: {
+             files: {
+                 'css/main.min.css': [
+                     "src/main.css"
+                 ]
+             }
+         }
+     }
     }), a.loadNpmTasks("grunt-contrib-uglify"), a.loadNpmTasks("grunt-contrib-watch"), 
     a.loadNpmTasks("grunt-contrib-connect"), a.loadNpmTasks("grunt-contrib-jshint"), 
+	 a.loadNpmTasks('grunt-contrib-cssmin'),
     a.registerTask("betigruntjs", [ "uglify:betigruntjs" ]),a.registerTask("betiself", [ "uglify:betiself" ]),
     a.registerTask("compress", [ "uglify:compress" ]), 
-    a.registerTask("default", [ "jshint", "uglify:compress", "connect", "watch" ]);
+    a.registerTask("default", [ "jshint", "uglify:compress", 'cssmin',"connect", "watch" ]);
 };
