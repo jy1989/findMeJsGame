@@ -1,5 +1,5 @@
 require.config({
-          baseUrl: "./src",
+          baseUrl: "./js",
 });
 
 requirejs(['el','gamelauncher'],
