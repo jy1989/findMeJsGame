@@ -1,4 +1,4 @@
-define(function (util) {
+define(function () {
 
 	var settingMap = {
 		scWidth : [4000, 6000, 8000],

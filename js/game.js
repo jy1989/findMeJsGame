@@ -1,22 +1,24 @@
-define(['util','gamestatus','el','gamelauncher'], function (util,gamestatus,el,gamelauncher) {
+define(['util', 'gamestatus', 'el', 'gamelauncher', 'setting'], function (util, gamestatus, el, gamelauncher,setting) {
+
 	return {
-		　　　　
-
-		createNew : function (setting) {
-			//console.log('create:', setting);
-
+		createNew : function () {
+			require.undef('setting');
+			require(['setting']);
 			var win;
 			var intervalId;
 			var timecount = 0;
 			var _this;
 			var appScore = 0;
-			var app = {
+			var game = {
 				initEl : function () {
 					_this = this;
+					console.log(setting);
+					//require.undef('setting');
+
 					appScore = gamestatus.score;
 					el.scrollview.style.width = setting.scWidth + 'px';
 					el.scrollview.style.height = setting.scHeight + 'px';
-					el.scrollview.style.border='10px solid #f0f0f0';
+					el.scrollview.style.border = '10px solid #f0f0f0';
 					// document.body.scrollTop = rd(0, setting.scHeight - setting.bxHeight);
 					// var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
 					//scrollTop= rd(0, setting.scHeight - setting.bxHeight);
@@ -28,8 +30,8 @@ define(['util','gamestatus','el','gamelauncher'], function (util,gamestatus,el,g
 
 					el.box.style.width = setting.bxWidth + 'px';
 					el.box.style.height = setting.bxHeight + 'px';
-					el.box.style.left = util.rd(win.width + setting.bxWidth, setting.scWidth - setting.bxWidth) + 'px';
-					el.box.style.top = util.rd(win.height + setting.bxHeight, setting.scHeight - setting.bxHeight) + 'px';
+					//el.box.style.left = util.rd(win.width + setting.bxWidth, setting.scWidth - setting.bxWidth) + 'px';
+					//el.box.style.top = util.rd(win.height + setting.bxHeight, setting.scHeight - setting.bxHeight) + 'px';
 					el.box.style.display = 'block';
 					el.box.style.backgroundColor = setting.boxColor;
 
@@ -120,11 +122,12 @@ define(['util','gamestatus','el','gamelauncher'], function (util,gamestatus,el,g
 
 					if (setting.level >= setting.maxLevel) {
 						el.playButton.innerText = '好咯，你赢了咯!!'; //+'用了'+appScore+'秒玩到了第'+setting.level+'关';
-						
+
 						el.playButton.removeEventListener('click', require('gamelauncher').playButtonGameStart, false);
-						
+
 					} else {
 						gamestatus.levelIndex++;
+
 						el.playButton.innerText = '来!下一关！！';
 						gamestatus.score = appScore;
 					}
@@ -157,10 +160,7 @@ define(['util','gamestatus','el','gamelauncher'], function (util,gamestatus,el,g
 				}
 
 			};
-			return app;
-
+			return game;
 		}
 	};
 });
-
-
