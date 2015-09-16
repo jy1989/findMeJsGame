@@ -1,9 +1,8 @@
-define(['util', 'gamestatus', 'el', 'gamelauncher', 'setting'], function (util, gamestatus, el, gamelauncher,setting) {
+define(['util', 'gamestatus', 'el', 'gamelauncher'], function (util, gamestatus, el, gamelauncher) {
 
 	return {
-		createNew : function () {
-			require.undef('setting');
-			require(['setting']);
+		createNew : function (setting) {
+			
 			var win;
 			var intervalId;
 			var timecount = 0;
@@ -30,8 +29,8 @@ define(['util', 'gamestatus', 'el', 'gamelauncher', 'setting'], function (util, 
 
 					el.box.style.width = setting.bxWidth + 'px';
 					el.box.style.height = setting.bxHeight + 'px';
-					//el.box.style.left = util.rd(win.width + setting.bxWidth, setting.scWidth - setting.bxWidth) + 'px';
-					//el.box.style.top = util.rd(win.height + setting.bxHeight, setting.scHeight - setting.bxHeight) + 'px';
+					el.box.style.left = util.rd(win.width + setting.bxWidth, setting.scWidth - setting.bxWidth) + 'px';
+					el.box.style.top = util.rd(win.height + setting.bxHeight, setting.scHeight - setting.bxHeight) + 'px';
 					el.box.style.display = 'block';
 					el.box.style.backgroundColor = setting.boxColor;
 
